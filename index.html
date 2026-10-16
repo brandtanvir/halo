@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HALO — Design System Builder, Icon Library & Font Builder</title>
+  <meta name="description" content="HALO is one design tool for product teams: build design-system tokens, use a 140-icon library and shape your own typeface, then export to Figma and code.">
+  <meta name="theme-color" content="#060709">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23060709'/%3E%3Ccircle cx='20' cy='20' r='11' fill='none' stroke='%23fff' stroke-width='2.4' stroke-dasharray='52 100' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/halo.css">
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+</head>
+<body data-page="home">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="scroll-hint" aria-hidden="true">Scroll</div>
+
+  <main>
+    <!-- 01 HERO -->
+    <section class="screen hero" id="top" aria-label="Introduction">
+      <div class="orb-letters" aria-hidden="true"><span>H</span><span>A</span><span>L</span><span>O</span><span>•</span></div>
+      <div class="wrap hero-copy">
+        <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span>Design System Builder · Icon Library · Font Builder</p>
+        <h1 class="h-hero">
+          <span class="line-mask"><span>Design systems, icons</span></span>
+          <span class="line-mask"><span>&amp; fonts in one app.</span></span>
+        </h1>
+        <p class="lede hero-lede">HALO is a design tool for product teams. Build your color, type and spacing tokens, pick from 140 ready-made icons, and shape your own typeface. Then export it all to Figma and code.</p>
+        <div class="btn-row hero-ctas">
+          <a class="pill solid" href="#beta" data-magnetic>Join the free beta</a>
+          <button class="pill tour-btn" data-magnetic aria-label="Watch the 60-second tour" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:12px;height:12px"><path class="tour-ico" d="M7 4.5v15l12-7.5z"/></svg>
+            <span class="tour-txt">Watch the tour</span>
+          </button>
+        </div>
+      </div>
+      <ul class="hero-products" aria-label="What's inside HALO">
+        <li><a href="systems.html" data-link><span class="hp-n">01</span><span class="hp-t"><b>Design System Builder</b><small>Color scales, type &amp; spacing tokens</small></span><span class="hp-a" aria-hidden="true">→</span></a></li>
+        <li><a href="icons.html" data-link><span class="hp-n">02</span><span class="hp-t"><b>Icon Library</b><small>140 icons in one consistent style</small></span><span class="hp-a" aria-hidden="true">→</span></a></li>
+        <li><a href="fonts.html" data-link><span class="hp-n">03</span><span class="hp-t"><b>Font Builder</b><small>Shape &amp; export your own typeface</small></span><span class="hp-a" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+
+    <!-- 02 ORBIT -->
+    <section class="screen" id="orbit" aria-label="Three tools">
+      <h2 class="h2 orbit-title">Three tools. One orbit.</h2>
+      <div class="orbit-labels" aria-hidden="true">
+        <div class="ol"><b>SYSTEMS</b><small>tokens · color · grid</small></div>
+        <div class="ol"><b>ICONS</b><small>140+ on one keyline</small></div>
+        <div class="ol"><b>TYPE</b><small>a parametric face</small></div>
+      </div>
+    </section>
+
+    <!-- 03 STUDIO -->
+    <section class="screen studio" id="studio" aria-label="The HALO studio">
+      <div class="app" aria-hidden="true">
+        <div class="app-top">
+          <svg class="ico" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <span>HALO Project</span>
+          <span class="grow"></span>
+          <span class="t-btn hide-sm">Save</span>
+          <span class="t-btn on push-btn">Push</span>
+          <span class="t-btn hide-sm" style="margin-left:12px;color:var(--accent-2)">Design</span>
+          <span class="t-btn hide-sm">Code</span>
+        </div>
+        <div class="app-body">
+          <div class="app-rail">
+            <i class="on"><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg></i>
+            <i><svg class="ico" viewBox="0 0 24 24"><path d="M5 6V4.5h14V6M12 4.5v15M9 19.5h6"/></svg></i>
+            <i><svg class="ico" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M9 4v16M15 4v16"/></svg></i>
+            <i><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></i>
+          </div>
+          <div class="app-canvas" id="appCanvas">
+            <svg class="app-cursor" viewBox="0 0 16 16"><path d="M2 1l11 7-5 1-2 5z" fill="#fff" stroke="#000" stroke-width=".8"/></svg>
+          </div>
+          <div class="app-panel">
+            <h6>INFO</h6>
+            <div class="app-row"><span>Name</span><span style="color:var(--ink)">Blue Orbit</span></div>
+            <div class="app-row"><span>Token</span><span class="mono" style="color:var(--ink)">color.primary</span></div>
+            <h6 style="margin-top:6px">COLOR MIXTURE</h6>
+            <div class="app-row"><span>Tint / Shade</span><span>Smooth · custom</span></div>
+            <div class="app-row"><span>Mix with white</span><span class="app-tog"></span></div>
+            <div class="app-row"><span>Generate alpha</span><span class="app-tog on"></span></div>
+            <div class="app-curve">
+              <svg viewBox="0 0 200 130" style="width:100%"><path class="app-curve-grid" d="M0 32h200M0 65h200M0 98h200M50 0v130M100 0v130M150 0v130" stroke="rgba(255,255,255,.06)"/>
+                <path class="app-curve-path" d="M6 124 C 70 124, 110 8, 194 6" fill="none" stroke="#fff" stroke-width="1.4"/>
+                <circle cx="70" cy="124" r="3" fill="#fff"/><circle cx="110" cy="8" r="3" fill="#fff"/></svg>
+            </div>
+            <div class="readout"><span>x1 <b>0.35</b></span><span>y1 <b>0.00</b></span><span>x2 <b>0.55</b></span><span>y2 <b>0.95</b></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 ECLIPSE -->
+    <section class="screen" id="eclipse" aria-label="Manifesto">
+      <div class="statement-wrap">
+        <span class="label" style="display:block;margin-bottom:22px">Manifesto</span>
+        <h2 class="h2 statement" id="eclipseWords">Every great interface orbits a system. We built the light around it.</h2>
+      </div>
+    </section>
+
+    <!-- 05 SYSTEMS -->
+    <section class="screen chapter" id="systems" data-chapter="Systems" data-n="01" aria-label="Design system builder">
+      <div class="chapter-text">
+        <span class="label"><span class="n">01</span>Design Systems</span>
+        <ol class="steps">
+          <li class="on"><button>Tints &amp; Shades</button><div class="desc"><p>Pull a curve, get a whole scale. HALO builds 11 perceptual OKLCH steps from one primary. Change the hue and every token linked to it updates.</p></div></li>
+          <li><button>Transparency</button><div class="desc"><p>Alpha ramps tied to your primary, so overlays, hovers and focus rings never drift off-brand. They stay readable on light and dark.</p></div></li>
+          <li><button>Gradient</button><div class="desc"><p>Linear, radial and conic gradients built from your own tokens. Edit a color in the scale and every gradient that uses it updates instantly.</p></div></li>
+        </ol>
+        <div class="step-pills" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="chapter-visual" id="sysVisual">
+        <div class="dots-col" id="sysDots"></div>
+        <div class="dot-tags" aria-hidden="true"><span>SHADES</span><span>PRIMARY</span><span>TINTS</span></div>
+        <div class="card curve-card" id="sysCard">
+          <div class="tabs" role="tablist"><button class="on" data-mode="tints">TINTS</button><button data-mode="shades">SHADES</button></div>
+          <svg class="curve-svg" id="sysCurve" viewBox="-8 -8 216 156" aria-label="Lightness curve — drag the handles"></svg>
+          <div class="hue-row"><span>Hue</span><input class="hue" type="range" min="0" max="360" value="262" id="sysHue" aria-label="Primary hue"><span class="mono" id="sysHex">#2F6BFF</span></div>
+          <div class="readout" id="sysReadout"></div>
+        </div>
+      </div>
+      <a class="learn-more" href="systems.html" data-link data-magnetic>Learn more</a>
+    </section>
+
+    <!-- 06 VERTICAL BEAT -->
+    <section class="screen" id="beat" aria-label="Grid">
+      <div class="beat-icon">
+        <svg class="ico" viewBox="0 0 24 24" style="width:30px;height:30px"><path d="M4 9h16M4 15h16M9 4v16M15 4v16"/></svg>
+        <span class="label">Grid</span>
+      </div>
+      <h2 class="h2 beat-title" id="beatWords">Picture a vertical beat running through every component.</h2>
+    </section>
+
+    <!-- 06b GRID CHAPTER -->
+    <section class="screen chapter" id="grid" data-chapter="Grid" data-n="01" aria-label="Grid and spacing">
+      <div class="chapter-text">
+        <span class="label"><span class="n">01</span>Systems · Grid</span>
+        <ol class="steps">
+          <li class="on"><button>Baseline</button><div class="desc"><p>Set a 4 or 8 pt rhythm once. Type, icons and components snap to the same vertical beat, so every screen keeps its tempo.</p></div></li>
+          <li><button>Columns</button><div class="desc"><p>Columns aligned to your baseline and subline. No manual math: HALO computes gutters and widths for every breakpoint.</p></div></li>
+          <li><button>Spacing</button><div class="desc"><p>A spacing scale generated from your base unit, named, documented and exported as tokens your developers can use as-is.</p></div></li>
+        </ol>
+        <div class="step-pills" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="chapter-visual">
+        <div class="step-view on" data-view="0">
+          <div class="baseline-vis">
+            <div class="bl-card" style="height:72px"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><div class="bl-card" style="height:144px"></div><div class="bl-card" style="height:144px"></div></div>
+            <div class="bl-card" style="height:48px;width:40%"></div>
+          </div>
+        </div>
+        <div class="step-view" data-view="1">
+          <div class="cols-vis">
+            <div class="cols-stats">
+              <div><b id="colN">12</b><span>Columns</span></div>
+              <div><b id="colG">24<sup>px</sup></b><span>Gutter</span></div>
+              <div><b id="colW">72<sup>px</sup></b><span>Column</span></div>
+            </div>
+            <div class="cols-row" id="colsRow"></div>
+            <div class="cols-ctrl"><span>Columns</span><input type="range" min="2" max="16" value="12" id="colRange" aria-label="Number of columns"></div>
+          </div>
+        </div>
+        <div class="step-view" data-view="2">
+          <div class="spacing-vis" id="spacingVis"></div>
+        </div>
+      </div>
+      <a class="learn-more" href="systems.html" data-link data-magnetic>Learn more</a>
+    </section>
+
+    <!-- 07 ICONS -->
+    <section class="screen chapter" id="icons" data-chapter="Icons" data-n="02" aria-label="Icon library">
+      <h2 class="h2 type-intro chapter-intro" id="iconsWords">A hundred and forty icons. One keyline. Zero compromise.</h2>
+      <div class="chapter-text">
+        <span class="label"><span class="n">02</span>Icon Library</span>
+        <ol class="steps">
+          <li class="on"><button>Keyline grid</button><div class="desc"><p>Every icon is drawn on a 24 px grid with 2 px of padding and optical keylines: circle, square, portrait and landscape. That's why the set sits evenly in a row.</p></div></li>
+          <li><button>Stroke &amp; corners</button><div class="desc"><p>One slider changes the stroke of the whole library, from hairline to bold. Toggle round or sharp terminals to match your type.</p></div></li>
+          <li><button>Search &amp; copy</button><div class="desc"><p>Search by name or meaning. Click any icon to copy clean SVG that inherits currentColor and your stroke token.</p></div></li>
+        </ol>
+        <div class="step-pills" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="chapter-visual">
+        <div class="step-view on" data-view="0"><div class="keyline-stage" id="keylineStage"></div></div>
+        <div class="step-view" data-view="1">
+          <div class="ico-grid-vis" id="icoGrid"></div>
+          <div class="ico-ctrl">
+            <span>Stroke</span><input type="range" min="1" max="2.5" step="0.05" value="1.5" id="icoStroke" aria-label="Stroke width">
+            <span class="mono" id="icoStrokeOut" style="color:var(--ink)">1.50</span>
+            <span class="seg" role="group" aria-label="Corners"><button aria-pressed="true" data-cap="round">Round</button><button aria-pressed="false" data-cap="square">Sharp</button></span>
+          </div>
+        </div>
+        <div class="step-view" data-view="2">
+          <div class="search-vis">
+            <label class="search-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <input type="text" id="icoSearch" placeholder="Search icons" aria-label="Search icons" autocomplete="off"><span class="caret"></span></label>
+            <div class="search-results" id="icoResults"></div>
+          </div>
+        </div>
+      </div>
+      <a class="learn-more" href="icons.html" data-link data-magnetic>Learn more</a>
+    </section>
+
+    <!-- 08 TYPE -->
+    <section class="screen chapter" id="type" data-chapter="Type" data-n="03" aria-label="Font builder">
+      <h2 class="h2 type-intro chapter-intro" id="typeWords">Your entire typography universe, built in one place.</h2>
+      <div class="chapter-text">
+        <span class="label"><span class="n">03</span>Font Builder</span>
+        <ol class="steps">
+          <li class="on"><button>Font builder</button><div class="desc"><p>HALO Geometric is a parametric face. Weight, width, slant and terminals are live parameters, not separate files. Shape it, then export.</p></div></li>
+          <li><button>Scale map</button><div class="desc"><p>A math-based type scale centered on your body size. Choose a ratio or a curve; your body text stays the focal point.</p></div></li>
+          <li><button>Styles</button><div class="desc"><p>Display, heading, body and caption styles are generated and paired, with line-height and tracking tuned for each size.</p></div></li>
+        </ol>
+        <div class="step-pills" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="chapter-visual">
+        <div class="step-view on" data-view="0">
+          <div class="specimen-vis">
+            <div class="src-list" aria-hidden="true"><span>HALO Geometric</span><span>Google Fonts</span><span>Upload OTF</span></div>
+            <div class="specimen-frame"><div id="typeSpecimen" style="width:100%"></div></div>
+            <div class="specimen-meta"><span>HALO Geometric</span><span id="typeMeta">wght 9 · wdth 1.00</span></div>
+            <div class="axis-ctrl">
+              <span>Weight</span><input type="range" min="2" max="22" step="0.5" value="9" id="tWeight" aria-label="Weight"><output id="tWeightO">9</output>
+              <span>Width</span><input type="range" min="0.6" max="1.5" step="0.01" value="1" id="tWidth" aria-label="Width"><output id="tWidthO">1.00</output>
+            </div>
+          </div>
+        </div>
+        <div class="step-view" data-view="1">
+          <div class="scale-vis">
+            <div class="scale-chart" id="scaleChart"></div>
+            <div class="scale-ctrl"><span>Ratio</span><div class="chips" id="ratioChips"></div></div>
+          </div>
+        </div>
+        <div class="step-view" data-view="2">
+          <div class="pair-vis" id="pairVis"></div>
+        </div>
+      </div>
+      <a class="learn-more" href="fonts.html" data-link data-magnetic>Learn more</a>
+    </section>
+
+    <!-- 09 FEATURES -->
+    <section class="screen features" id="features" aria-label="Features">
+      <span class="label" style="display:block;text-align:center;margin-bottom:22px">Features</span>
+      <div class="tabs-big" role="tablist">
+        <button class="on" role="tab" aria-selected="true" data-tab="0">For Designers</button>
+        <button role="tab" aria-selected="false" data-tab="1">For Developers</button>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-set" data-set="0">
+          <div class="feat"><svg class="ico" viewBox="0 0 24 24" data-i="layers"></svg><h4>Tokens that design themselves</h4><p>Color, type, grid and radius live in one source of truth.</p></div>
+          <div class="feat"><svg class="ico" viewBox="0 0 24 24" data-i="pen-tool"></svg><h4>Icons on the same keyline</h4><p>Draw, import and normalize icons to your stroke token.</p></div>
+          <div class="feat"><svg class="ico" viewBox="0 0 24 24" data-i="type"></svg><h4>Type you actually own</h4><p>Shape a parametric face and export OTF, WOFF2 or SVG.</p></div>
+        </div>
+        <div class="feat-set" data-set="1" hidden>
+          <div class="feat"><svg class="ico" viewBox="0 0 24 24" data-i="refresh"></svg><h4>Quick start, synced with designers</h4><p>Pull tokens straight from the studio, always current.</p></div>
+          <div class="feat"><svg class="ico" viewBox="0 0 24 24" data-i="link"></svg><h4>Bound to design through variables</h4><p>One rename in HALO renames it in Figma and in code.</p></div>
+          <div class="feat"><svg class="ico" viewBox="0 0 24 24" data-i="code"></svg><h4>Smooth code integration</h4><p>CSS, SCSS, JSON, Tailwind and a typed SDK.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 EXPORT -->
+    <section class="export" id="export" aria-label="Export">
+      <span class="label">Export</span>
+      <h2 class="h2">Ship to <span class="wheel" id="wheel"><span>Figma</span><span>CSS</span><span>SVG</span><span>OTF</span><span>Figma</span></span></h2>
+      <div class="plugin" data-reveal>
+        <div class="plugin-top"><span>HALO</span><span>✕</span></div>
+        <div class="plugin-body">
+          <div class="plugin-url"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://api.halo.studio/projects/7f3a…</span><span>↻</span></div>
+          <div class="plugin-item"><svg class="ico" viewBox="0 0 24 24" data-i="palette"></svg><span class="grow">Color</span><span class="st">142 tokens</span></div>
+          <div class="plugin-item"><svg class="ico" viewBox="0 0 24 24" data-i="type"></svg><span class="grow">Typography</span><span class="st">18 styles</span></div>
+          <div class="plugin-item"><svg class="ico" viewBox="0 0 24 24" data-i="grid"></svg><span class="grow">Grid</span><span class="st">5 breakpoints</span></div>
+          <div class="plugin-item"><svg class="ico" viewBox="0 0 24 24" data-i="sparkle"></svg><span class="grow">Icons</span><span class="st">140 SVG</span></div>
+        </div>
+      </div>
+      <div class="export-list">
+        <div data-reveal><h5>Synchronised styles in Figma</h5><p>Variables, styles and components, updated with one push.</p></div>
+        <div data-reveal="120"><h5>Specs in the Guidebook</h5><p>Auto-generated documentation your team will actually read.</p></div>
+        <div data-reveal="240"><h5>Pure CSS or SCSS</h5><p>Custom properties, utility maps or a Tailwind preset.</p></div>
+      </div>
+    </section>
+
+    <!-- 11 PRICING -->
+    <section class="pricing" id="pricing" aria-label="Pricing">
+      <div class="pricing-head">
+        <div>
+          <span class="label" style="display:block;margin-bottom:18px">Pricing</span>
+          <h2 class="h2" data-reveal>Pick your orbit.</h2>
+        </div>
+        <div class="bill-toggle">
+          <span class="seg" role="group" aria-label="Billing period"><button aria-pressed="true" data-bill="m">Monthly</button><button aria-pressed="false" data-bill="y">Yearly −20%</button></span>
+        </div>
+      </div>
+      <div class="price-grid">
+        <article class="price" data-reveal>
+          <h4>Orbit</h4>
+          <div class="amt"><span data-m="0" data-y="0">$0</span><small>forever</small></div>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>1 design system</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>The full HALO icon set</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>CSS variable export</li>
+          </ul>
+          <a class="pill" href="#beta">Start free</a>
+        </article>
+        <article class="price featured" data-reveal="120">
+          <h4>Halo <span class="badge">Popular</span></h4>
+          <div class="amt"><span data-m="18" data-y="14">$18</span><small>per editor / mo</small></div>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Unlimited systems &amp; themes</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Custom icon libraries</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Font builder + OTF / WOFF2</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Figma sync</li>
+          </ul>
+          <a class="pill solid" href="#beta">Request beta</a>
+        </article>
+        <article class="price" data-reveal="240">
+          <h4>Eclipse</h4>
+          <div class="amt"><span data-m="49" data-y="39">$49</span><small>per editor / mo</small></div>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Everything in Halo</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Multi-brand token sets</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>SSO, roles &amp; audit log</li>
+            <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Typed SDK &amp; CI hooks</li>
+          </ul>
+          <a class="pill" href="#beta">Talk to us</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 12 CTA -->
+    <section class="screen cta" id="beta" aria-label="Request beta">
+      <div>
+        <span class="label" style="display:block;margin-bottom:22px">Private beta</span>
+        <h2 class="h2" id="ctaTitle"><span class="line-mask"><span>Step into</span></span><span class="line-mask"><span>the halo.</span></span></h2>
+        <form class="beta-form" id="betaForm" novalidate>
+          <label class="sr-only" for="betaEmail">Email</label>
+          <input id="betaEmail" type="email" placeholder="you@studio.com" autocomplete="email" required>
+          <button class="pill solid" type="submit" data-magnetic>Request beta</button>
+        </form>
+        <p class="form-note" id="formNote" aria-live="polite">No spam. One email when your seat is ready.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Footer">
+    <div class="footer-cols">
+      <div><h6>HALO</h6><p style="margin:0;color:var(--ink-2);max-width:30ch">Systems, icons &amp; type. One studio for the whole visual language of your product.</p></div>
+      <div><h6>Product</h6><a href="systems.html" data-link>Systems</a><a href="icons.html" data-link>Icons</a><a href="fonts.html" data-link>Fonts</a></div>
+      <div><h6>Studio</h6><a href="#pricing">Pricing</a><a href="#export">Export</a><a href="#beta">Beta</a></div>
+      <div><h6>Social</h6><a href="#beta">Newsletter</a><a href="#beta">Community</a><a href="#beta">Changelog</a></div>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span>H</span><span>A</span><span>L</span><span>O</span></div>
+    <div class="footer-bottom"><span>© 2026 HALO Studio</span><span>Night with one light.</span></div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="module" src="js/home.js"></script>
+</body>
+</html>
