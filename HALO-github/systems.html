@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HALO Systems — Design System Builder</title>
+  <meta name="description" content="Build color scales, type, spacing and radius tokens once, preview them live in light and dark, and export CSS, JSON or Tailwind.">
+  <meta name="theme-color" content="#060709">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23060709'/%3E%3Ccircle cx='20' cy='20' r='11' fill='none' stroke='%23fff' stroke-width='2.4' stroke-dasharray='52 100' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/halo.css">
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+  <style>
+    .pv { --p: #2F6BFF; --p-ink: #fff; --p-soft: rgba(47,107,255,.14); --r: 12px; --base: 16px; --sp: 8px;
+      --bg: #fff; --fg: #0b0c0f; --muted: #5d6270; --line: #e4e6eb; --card: #f6f7f9;
+      background: var(--bg); color: var(--fg); border-radius: 18px; padding: calc(var(--sp) * 4); display: flex; flex-direction: column; gap: calc(var(--sp) * 2.5);
+      font-size: var(--base); transition: background .7s, color .7s, padding .6s, gap .6s; border: 1px solid rgba(255,255,255,.08); }
+    .pv * { transition: background-color .7s cubic-bezier(.25,.85,.3,1), color .7s cubic-bezier(.25,.85,.3,1), border-radius .6s cubic-bezier(.25,.85,.3,1), padding .6s cubic-bezier(.25,.85,.3,1), height .6s cubic-bezier(.25,.85,.3,1), font-size .6s cubic-bezier(.25,.85,.3,1), gap .6s cubic-bezier(.25,.85,.3,1), box-shadow .7s, border-color .7s; }
+    .pv.dark { --bg: #0d0e12; --fg: #eef0f4; --muted: #8b90a0; --line: #23252c; --card: #15171c; }
+    .pv h4 { margin: 0; font-weight: 500; letter-spacing: -.02em; font-size: calc(var(--base) * var(--ratio, 1.25) * var(--ratio, 1.25)); line-height: 1.15; }
+    .pv p { margin: 0; color: var(--muted); font-size: var(--base); }
+    .pv .row { display: flex; gap: calc(var(--sp) * 1.5); flex-wrap: wrap; align-items: center; }
+    .pv .b { height: calc(var(--sp) * 5.5); padding: 0 calc(var(--sp) * 2.5); border-radius: var(--r); font-size: calc(var(--base) * .9); font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+    .pv .b.pri { background: var(--p); color: var(--p-ink); }
+    .pv .b.sec { background: var(--p-soft); color: var(--p); }
+    .pv .b.ghost { border: 1px solid var(--line); color: var(--fg); }
+    .pv .in { height: calc(var(--sp) * 5.5); border-radius: var(--r); border: 1px solid var(--line); background: var(--card); padding: 0 calc(var(--sp) * 2); display: flex; align-items: center; color: var(--muted); font-size: calc(var(--base) * .9); flex: 1; min-width: 160px; }
+    .pv .in.focus { border-color: var(--p); box-shadow: 0 0 0 4px var(--p-soft); color: var(--fg); }
+    .pv .tg { width: 44px; height: 26px; border-radius: 99px; background: var(--p); position: relative; flex: 0 0 auto; }
+    .pv .tg::after { content: ""; position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; }
+    .pv .chip2 { padding: 4px 10px; border-radius: 99px; background: var(--p-soft); color: var(--p); font-size: calc(var(--base) * .75); font-weight: 500; }
+    .pv .crd { background: var(--card); border: 1px solid var(--line); border-radius: calc(var(--r) * 1.3); padding: calc(var(--sp) * 2.5); display: flex; gap: calc(var(--sp) * 2); align-items: center; }
+    .pv .av { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--p), var(--p-soft)); flex: 0 0 auto; }
+    .pv .bar { height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; }
+    .pv .bar i { display: block; height: 100%; width: 64%; background: var(--p); border-radius: 6px; }
+    .ctrl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 18px; }
+    @media (max-width: 1023px) { .ctrl-grid { grid-template-columns: 1fr 1fr; } }
+    #labDots { display: none; }
+    .lab-curve.card { position: relative; padding: 14px; border-radius: 16px; }
+  </style>
+</head>
+<body data-page="systems">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <main>
+    <section class="page-hero" id="top">
+      <span class="label" style="margin-bottom:24px"><span class="n">01</span>Design System Builder</span>
+      <h1 class="h-hero"><span class="line-mask"><span>Build the system once.</span></span><span class="line-mask"><span>Ship it everywhere.</span></span></h1>
+      <p class="lede">Color, type, spacing and radius live in one source of truth. Tune it here, watch every component follow, then export clean tokens.</p>
+      <div class="btn-row"><a class="pill" href="#lab" data-magnetic>Open the lab</a><a class="pill solid" href="index.html#beta" data-link data-magnetic>Request beta</a></div>
+    </section>
+
+    <section class="block" id="lab">
+      <div class="block-head">
+        <div><span class="label" style="display:block;margin-bottom:18px">Palette lab</span><h2 class="h2">Pull a curve.<br>Get a whole scale.</h2></div>
+        <p class="lede">Eleven perceptual OKLCH steps from one hue. Drag the curve handles, then click any swatch to copy its hex. Each swatch shows its contrast badge against the text color it gets.</p>
+      </div>
+      <div class="tool" data-reveal>
+        <div class="tool-grid">
+          <div class="tool-side">
+            <div class="field"><span>Primary hue <output id="oHue">262°</output></span><input class="hue" type="range" min="0" max="360" value="262" id="labHue"></div>
+            <div class="field"><span>Chroma <output id="oChroma">0.21</output></span><input type="range" min="0" max="0.32" step="0.005" value="0.21" id="labChroma"></div>
+            <div class="field"><span>Accent hue <output id="oAccent">18°</output></span><input class="hue" type="range" min="0" max="360" value="18" id="labAccent"></div>
+            <div class="side-title">Lightness curve</div>
+            <div class="card lab-curve" id="labCard">
+              <div class="tabs" style="display:flex;gap:6px;margin-bottom:8px"><button class="chip on" style="flex:1">Tints</button><button class="chip" style="flex:1">Shades</button></div>
+              <svg class="curve-svg" id="labCurve" viewBox="-8 -8 216 166"></svg>
+              <div class="readout" id="labReadout"></div>
+              <span id="labHex" hidden></span>
+            </div>
+            <div id="labDots"></div>
+          </div>
+          <div class="tool-main">
+            <div class="scale-name"><span>primary</span><span class="mono" id="nPrimary"></span></div>
+            <div class="scale-row" id="rowPrimary"></div>
+            <div class="scale-name"><span>accent</span><span class="mono" id="nAccent"></span></div>
+            <div class="scale-row" id="rowAccent"></div>
+            <div class="scale-name"><span>neutral</span><span class="mono">tinted graphite</span></div>
+            <div class="scale-row" id="rowNeutral"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="preview">
+      <div class="block-head">
+        <div><span class="label" style="display:block;margin-bottom:18px">Type, space &amp; shape</span><h2 class="h2">Every component<br>follows the tokens.</h2></div>
+        <p class="lede">Base size, scale ratio, spacing unit and radius drive the previews below. They render live, in both themes, from the palette above.</p>
+      </div>
+      <div class="tool" data-reveal style="padding:20px">
+        <div class="ctrl-grid">
+          <div class="field"><span>Base size <output id="oBase">16px</output></span><input type="range" min="13" max="20" value="16" id="tBase"></div>
+          <div class="field"><span>Scale ratio <output id="oRatio">1.25</output></span><input type="range" min="1.1" max="1.5" step="0.005" value="1.25" id="tRatio"></div>
+          <div class="field"><span>Spacing unit <output id="oSp">8px</output></span><input type="range" min="4" max="12" value="8" id="tSp"></div>
+          <div class="field"><span>Radius <output id="oR">12px</output></span><input type="range" min="0" max="28" value="12" id="tR"></div>
+        </div>
+        <div class="preview-grid">
+          <div class="pv" id="pvLight"></div>
+          <div class="pv dark" id="pvDark"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="export">
+      <div class="block-head">
+        <div><span class="label" style="display:block;margin-bottom:18px">Export</span><h2 class="h2">Tokens your developers<br>can paste as-is.</h2></div>
+        <div class="tabs-sm" role="tablist" id="fmtTabs"><button class="on" data-f="css">CSS</button><button data-f="json">JSON</button><button data-f="tw">Tailwind</button></div>
+      </div>
+      <div style="position:relative" data-reveal>
+        <pre class="code" id="code"></pre>
+        <button class="pill solid" id="copyCode" style="position:absolute;top:14px;right:14px;height:36px" data-magnetic>Copy</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="module" src="js/systems.js"></script>
+</body>
+</html>
